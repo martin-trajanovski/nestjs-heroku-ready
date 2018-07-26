@@ -1,0 +1,15 @@
+{
+	"extends": [
+		"tslint-config-airbnb",
+		"tslint-angular"
+	],
+	"rules": {
+		"curly": [true, "ignore-same-line"],
+		"indent": [
+			true,
+			"tabs"
+		],
+		"max-line-length": false,
+		"no-inferrable-types": [true, "ignore-params", "ignore-properties"]
+	}
+}
