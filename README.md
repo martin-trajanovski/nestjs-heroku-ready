@@ -34,4 +34,4 @@ Use `yarn deploy` to be able to deploy it on heroku.
 
 ## Further help
 
-Feel free to [contact](mailto:martin.trajanovski@gmail.com) me for any issues or problems.
+Feel free to [contact](mailto:martin.trajanovski@gmail.com?Subject=NestHerokuReady%20question/issue/problem) me for any issues or problems.
