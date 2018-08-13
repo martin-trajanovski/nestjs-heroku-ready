@@ -1,15 +1,16 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import * as crypto from 'crypto';
 
 import { CompanyDto } from './company.dto';
-import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class CompaniesService {
 	private customers = [
 		{
-			_id: '8ae14023-4156-4af0-9d4c-11e7143389f9',
+			_id: 'b73a66f7294b7224e629e9636469f7d0',
 			isActive: false,
 			company: 'MEDMEX',
+			logo: '',
 			industry: 'travel',
 			about: `Duis esse deserunt duis esse labore in cillum pariatur. Id elit eiusmod adipisicing sunt amet cupidatat eiusmod.
 					Do cillum ipsum proident aute ipsum non id pariatur quis ullamco mollit incididunt. Ipsum laborum voluptate irure adipisicing mollit enim magna.
@@ -30,9 +31,10 @@ export class CompaniesService {
 			]
 		},
 		{
-			_id: '99569098-8495-4d09-aa08-0666e6410709',
+			_id: '9df4d9e0f52797f05d97c819abc1211f',
 			isActive: true,
 			company: 'PLUTORQUE',
+			logo: 'https://www.roleyfamilycentre.com.au/wp-content/uploads/2018/06/Switch-your-thinking-green-cleaning-image-358x286.jpg',
 			industry: 'finance',
 			about: `Ad tempor nisi sit veniam occaecat aliqua eiusmod ut quis elit. Nisi consectetur esse quis laboris dolor adipisicing mollit exercitation anim laborum nisi.
 					Aliquip proident aliquip do aute laboris eiusmod laboris labore incididunt Lorem eiusmod velit eu velit. Fugiat sint fugiat dolore elit sunt cupidatat consectetur.
@@ -53,9 +55,10 @@ export class CompaniesService {
 			]
 		},
 		{
-			_id: '87b9c27e-2b76-4e89-a302-0184e1fce5c0',
+			_id: '9661bb1c1d65ea4caa8832e9696ec3f3',
 			isActive: true,
 			company: 'IZZBY',
+			logo: '',
 			industry: 'finance',
 			about: `Et sunt deserunt id magna tempor consectetur fugiat duis ea occaecat proident nulla. Occaecat sit eiusmod ullamco in commodo Lorem anim dolor do ex cupidatat amet occaecat do. Occaecat consequat culpa
 					esse et occaecat non sint nostrud et pariatur. Quis reprehenderit elit sit laboris adipisicing eu reprehenderit aute nisi sint veniam sit eiusmod. Culpa anim incididunt elit esse commodo incididunt.
@@ -76,9 +79,10 @@ export class CompaniesService {
 			]
 		},
 		{
-			_id: '3efb562f-65b6-4be4-b870-f9735d4249be',
+			_id: 'ac5bd68fefb3dc27808aaba3314c2736',
 			isActive: false,
 			company: 'GREEKER',
+			logo: '',
 			industry: 'travel',
 			about: `Consectetur ex pariatur incididunt sint occaecat dolore duis. Sunt irure voluptate sunt est exercitation ea veniam. Eiusmod magna quis laboris dolor.
 				Culpa irure voluptate in qui cupidatat elit pariatur fugiat. Eiusmod adipisicing eiusmod Lorem anim esse quis duis.`,
@@ -98,9 +102,10 @@ export class CompaniesService {
 			]
 		},
 		{
-			_id: 'f5904bd3-c752-4d44-b3d6-e54e087f87c3',
+			_id: '146384bcfe8228c421ef33a4601b09d3',
 			isActive: true,
 			company: 'ZAGGLES',
+			logo: '',
 			industry: 'finance',
 			about: `Nisi excepteur sit dolor anim anim mollit cillum quis occaecat sit. Nulla non culpa eu voluptate labore aliqua excepteur fugiat.
 					Ipsum voluptate Lorem nulla irure ex duis eu minim ullamco sint. Voluptate nisi ad sint proident minim.
@@ -121,9 +126,10 @@ export class CompaniesService {
 			]
 		},
 		{
-			_id: 'e11928de-59cc-466e-be94-91a44be5534b',
+			_id: '5e559b63dbf12b54d6430c9ecf18de05',
 			isActive: true,
 			company: 'MATRIXITY',
+			logo: '',
 			industry: 'travel',
 			about: `Ex pariatur adipisicing id id dolore fugiat est laboris in exercitation non cillum exercitation deserunt. Exercitation laborum ex irure est occaecat.
 				Excepteur id ipsum veniam ipsum anim laborum exercitation pariatur cillum deserunt velit esse. Commodo consectetur cillum velit exercitation incididunt mollit amet deserunt.`,
@@ -143,9 +149,10 @@ export class CompaniesService {
 			]
 		},
 		{
-			_id: '82a67dbf-204b-4ff9-9964-6d1775ced714',
+			_id: '6d3160e928464dc0b75aa4d061f434ee',
 			isActive: false,
 			company: 'EXOVENT',
+			logo: '',
 			industry: 'travel',
 			about: `Cillum ipsum est elit ea aliquip ad ex. Est non fugiat quis reprehenderit quis aliqua consequat cupidatat aliquip eu excepteur nostrud.
 					Eu occaecat consectetur elit dolore proident. Ut id in enim ut enim dolore enim ut amet et. Nostrud sint voluptate elit minim occaecat commodo.`,
@@ -165,9 +172,10 @@ export class CompaniesService {
 			]
 		},
 		{
-			_id: '38756c7f-42e2-43f0-a20f-e35042e987db',
+			_id: 'c139b60885059b8459b756adbdbd9ac2',
 			isActive: false,
 			company: 'EQUICOM',
+			logo: '',
 			industry: 'travel',
 			about: 'Dolor aute aute eiusmod dolor sunt nulla et et aliquip ullamco. Eu in esse qui id fugiat consequat officia fugiat aute nisi deserunt velit irure. Laborum quis mollit tempor nisi laborum sunt do dolor veniam consequat qui aliquip et.',
 			projects: [
@@ -186,9 +194,10 @@ export class CompaniesService {
 			]
 		},
 		{
-			_id: '2327771d-7b75-4573-b220-25721fe79768',
+			_id: 'a20db7bbfa636705786fc65a22e9764e',
 			isActive: false,
 			company: 'EARWAX',
+			logo: '',
 			industry: 'finance',
 			about: 'Veniam ullamco labore voluptate aute est elit amet. Irure id excepteur sint quis do ut aliqua esse incididunt tempor laboris. Officia consectetur aliqua exercitation cillum sunt officia culpa dolor eiusmod irure anim reprehenderit.',
 			projects: [
@@ -207,9 +216,10 @@ export class CompaniesService {
 			]
 		},
 		{
-			_id: '1ca69e1a-cf22-4f5a-926e-b5a98fce75f2',
+			_id: '40b6d4b0ef62c66323c48aee9c3edb90',
 			isActive: false,
 			company: 'UPDAT',
+			logo: '',
 			industry: 'insurance',
 			about: `Velit aliqua consequat pariatur elit velit culpa ex aliquip eiusmod exercitation. Nostrud non nisi sit cupidatat velit excepteur pariatur qui excepteur nisi sint reprehenderit.
 					Quis tempor id laborum aliquip. Cupidatat deserunt exercitation est velit enim culpa et Lorem duis voluptate. Cupidatat aliquip culpa commodo elit eiusmod occaecat nulla.
@@ -230,9 +240,10 @@ export class CompaniesService {
 			]
 		},
 		{
-			_id: '5959016c-d2c4-4864-ba86-9ae242fb2186',
+			_id: '840fbc3544aad199f221e47c28ad936b',
 			isActive: false,
 			company: 'NETILITY',
+			logo: '',
 			industry: 'finance',
 			about: 'Laborum ex non qui aute cillum Lorem exercitation ad et quis dolore. Duis id nulla ex tempor irure nostrud cupidatat anim cupidatat dolor duis. Ad nostrud incididunt esse fugiat ullamco.',
 			projects: [
@@ -251,9 +262,10 @@ export class CompaniesService {
 			]
 		},
 		{
-			_id: '928e93c1-4015-4b90-9300-326d3a1efd19',
+			_id: '33f81f179f410fb8ec3ccc257338d30e',
 			isActive: true,
 			company: 'DELPHIDE',
+			logo: '',
 			industry: 'insurance',
 			about: `Eiusmod elit ad occaecat eiusmod aliquip anim Lorem. Mollit aliqua aute minim do sunt nulla sunt nisi Lorem ullamco. Exercitation pariatur tempor consectetur laboris nisi sit qui excepteur pariatur.
 					Ad non minim laborum ut in esse sint officia est deserunt et nostrud. Veniam cillum pariatur anim ea elit laborum qui est nulla voluptate quis.
@@ -274,9 +286,10 @@ export class CompaniesService {
 			]
 		},
 		{
-			_id: '2e6f41b0-5288-4059-b7c5-5618354bad51',
+			_id: '4e87dc97f3168080b6d7d333e1ffcc00',
 			isActive: true,
 			company: 'XIIX',
+			logo: '',
 			industry: 'travel',
 			about: `Quis exercitation adipisicing officia est commodo minim do consectetur officia adipisicing proident mollit Lorem. Irure minim labore dolor eiusmod veniam quis.
 					Eu ipsum et non eu excepteur fugiat culpa ipsum est mollit adipisicing. Laborum exercitation dolor consectetur pariatur eiusmod ea velit quis exercitation adipisicing anim duis aliqua.
@@ -297,9 +310,10 @@ export class CompaniesService {
 			]
 		},
 		{
-			_id: 'bcfcd988-6d47-4c3c-8440-43e6afe55054',
+			_id: '2726dd20f17e200d679a5134482a9a9a',
 			isActive: false,
 			company: 'SUREPLEX',
+			logo: '',
 			industry: 'travel',
 			about: 'Qui consequat consectetur elit est nostrud ea fugiat officia ad. Proident mollit dolore exercitation quis sit. Id enim voluptate officia ut velit velit dolore adipisicing sint.',
 			projects: [
@@ -318,9 +332,10 @@ export class CompaniesService {
 			]
 		},
 		{
-			_id: '547d34d1-02cb-46ff-9086-97bb6650be71',
+			_id: '34b8e95a03088459a460b85467d9f2f9',
 			isActive: true,
 			company: 'NIMON',
+			logo: '',
 			industry: 'travel',
 			about: `Ex labore enim quis cillum culpa cillum magna dolor laboris laboris eiusmod aute. Consectetur ullamco tempor dolore veniam aliquip fugiat officia sit amet.
 					Eu quis aute proident aute exercitation excepteur minim occaecat ea nisi. Occaecat exercitation est aliquip consectetur ex irure et dolore irure pariatur.`,
@@ -340,9 +355,10 @@ export class CompaniesService {
 			]
 		},
 		{
-			_id: 'f5906d34-5844-41f4-8170-6e23f32b6082',
+			_id: '5d35a476e8bbb02194019d989a1fda00',
 			isActive: true,
 			company: 'OVERFORK',
+			logo: '',
 			industry: 'insurance',
 			about: `Laboris nisi qui in dolor sunt. Non reprehenderit occaecat et ea irure consequat quis occaecat non ad. Proident dolore officia non deserunt ut aute duis.
 					Cillum irure qui sint quis sunt id consectetur dolor. Irure ex ullamco sunt fugiat irure ex quis.`,
@@ -362,9 +378,10 @@ export class CompaniesService {
 			]
 		},
 		{
-			_id: '4686a81f-80a1-4b1c-9a9c-050d242050f2',
+			_id: 'e02ad1cdbf92d4a6dbadb30e73b667f1',
 			isActive: false,
 			company: 'TROPOLIS',
+			logo: '',
 			industry: 'finance',
 			about: `Mollit aliquip sint consectetur mollit deserunt exercitation ea aute in reprehenderit dolore deserunt id mollit. Qui aliqua officia ad non proident nostrud Lorem irure ut laborum.
 					Nostrud amet velit veniam nisi Lorem quis. Nostrud culpa minim esse ut sint non duis adipisicing irure.`,
@@ -392,7 +409,7 @@ export class CompaniesService {
 	getCompanyById(id: string): CompanyDto {
 		let companyToReturn;
 
-		if (id && id.length === 36) {
+		if (id && id.length === 32) {
 			companyToReturn = this.customers.find(company => company._id === id);
 		}
 
@@ -404,12 +421,13 @@ export class CompaniesService {
 	}
 
 	createCompany(newCompany: CompanyDto): CompanyDto {
-		const id: string = uuid();
+		const id = crypto.randomBytes(16).toString('hex');
 
 		const newCompanyToInsert = {
 			_id: id,
 			isActive: true,
 			company: newCompany.company,
+			logo: newCompany.logo,
 			industry: newCompany.industry,
 			about: newCompany.about,
 			projects: newCompany.projects
@@ -423,7 +441,7 @@ export class CompaniesService {
 	updateCompany(id: string, companyData: CompanyDto): CompanyDto {
 		let companyToUpdateIndex;
 
-		if (id && id.length === 36) {
+		if (id && id.length === 32) {
 			companyToUpdateIndex = this.customers.findIndex(company => company._id === id);
 		}
 
@@ -432,6 +450,7 @@ export class CompaniesService {
 				_id: this.customers[companyToUpdateIndex]._id,
 				isActive: companyData.isActive || this.customers[companyToUpdateIndex].isActive,
 				company: companyData.company || this.customers[companyToUpdateIndex].company,
+				logo: companyData.logo || this.customers[companyToUpdateIndex].logo,
 				industry: companyData.industry || this.customers[companyToUpdateIndex].industry,
 				about: companyData.about || this.customers[companyToUpdateIndex].about,
 				projects: companyData.projects || this.customers[companyToUpdateIndex].projects
@@ -446,7 +465,7 @@ export class CompaniesService {
 	removeCompany(id: string): CompanyDto {
 		let companyToRemoveIndex;
 
-		if (id && id.length === 36) {
+		if (id && id.length === 32) {
 			companyToRemoveIndex = this.customers.findIndex(company => company._id === id);
 		}
 
