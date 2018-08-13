@@ -8,6 +8,6 @@ export class ApiController {
 
 	@Get()
 	root(): string {
-		return this.api$.root();
+		return this.api$.root(); // Return message for root route.
 	}
 }

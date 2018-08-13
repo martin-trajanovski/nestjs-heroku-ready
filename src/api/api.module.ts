@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 
-import { HelloWorldModule } from './hello-world/hello-world.module';
+import { CompaniesModule } from './companies/companies.module';
 
 import { ApiController } from './api.controller';
 import { ApiService } from './api.service';
 
 @Module({
-	imports: [HelloWorldModule],
+	imports: [CompaniesModule],
 	controllers: [ApiController],
 	providers: [ApiService],
 })
