@@ -5,10 +5,11 @@ import { CompaniesModule } from './companies/companies.module';
 
 import { ApiController } from './api.controller';
 import { ApiService } from './api.service';
+import * as environment from '../../env';
 
 @Module({
 	imports: [
-		MongooseModule.forRoot('mongodb://angular-nestjs-db-user2:angularnestuser2@ds123372.mlab.com:23372/angular-nestjs-db'),
+		MongooseModule.forRoot(environment.MONGODB_CONFIG.databaseURL),
 		CompaniesModule
 	],
 	controllers: [ApiController],
